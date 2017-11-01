@@ -1,6 +1,6 @@
 node {
     checkout scm
-    echo  "Build: ${BUILD}"
+   // echo  "Build: ${BUILD}"
     sh 'printenv'
 
     echo "Branch name: ${BRANCH_NAME}"
