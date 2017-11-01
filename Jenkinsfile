@@ -2,7 +2,7 @@ node {
     checkout scm
     echo  'Build: ${BUILD_NUMBER}'
 
-    def IAMGE_NAME = 'yavord/nodeapp'
+    def IMAGE_NAME = 'yavord/nodeapp'
     //Just to see what is available
     sh 'printenv'    
 
