@@ -1,5 +1,5 @@
 node {
-   def app
+   checkout scm
    stage('Hello'){
     echo "Hello world"
    }
