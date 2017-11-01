@@ -1,19 +1,34 @@
 node {
     checkout scm
-   // echo  "Build: ${BUILD}"
-    sh 'printenv'
+    echo  'Build: ${BUILD_NUMBER}'
 
-    echo "Branch name: ${BRANCH_NAME}"
-    BUILD = BRANCH_NAME == 'master' ? 'latest' : BRANCH_NAME
+    def IAMGE_NAME = 'yavord/nodeapp'
+    //Just to see what is available
+    sh 'printenv'    
 
     stage('Hello') {
-        //Just check if everything works
-
-        echo "Hello world"
+        //Check if everything works
+        echo 'Hello world'
     }
 
-    stage('Build container image')
-    {
-        
+    stage('Build container image') {
+        sh "sudo docker build -t ${IMAGE_NAME}:${BUILD} ."
+    }
+
+    stage('Run docker container from image') {
+
+        //Stop and remove all previous containers
+        sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor=${IMAGE_NAME} --format="{{.ID}}"))'
+
+                def CONTAINER_ID = sh (
+                script: "sudo docker run -d -p 8082:3000 ${IMAGE_NAME}:${BUILD}",
+                returnStdout: true
+        ).trim()
+
+        echo "============================="
+        echo "============================="
+        echo "Container id: ${CONTAINER_ID}"
+        echo "============================="
+        echo "============================="
     }
 }
