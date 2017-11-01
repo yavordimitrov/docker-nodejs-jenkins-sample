@@ -12,7 +12,7 @@ node {
     }
 
     stage('Build container image') {
-        sh "sudo docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
+        sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
     }
 
     stage('Run docker container from image') {
