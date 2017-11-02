@@ -18,8 +18,21 @@ node {
 
     stage('Run docker container from image') {
 
+        echo "============================="
+        echo "============================="
+        echo "===Removing old containers==="
+        echo "============================="
+        echo "============================="
         //Stop and remove all previous containers
-        sh "sudo docker rm \$(docker stop \$(docker ps -a -q --filter ancestor=${IMAGE_NAME}))"
+        sh "sudo docker rm \$(sudo docker stop \$(sudo docker ps -a -q --filter ancestor=${IMAGE_NAME}))"
+        
+
+
+        echo "============================="
+        echo "============================="
+        echo "===Running ${IMAGE_NAME} ==="
+        echo "============================="
+        echo "============================="
 
                 def CONTAINER_ID = sh (
                 script: "sudo docker run -d -p 8082:3000 ${IMAGE_NAME}:${BUILD}",
