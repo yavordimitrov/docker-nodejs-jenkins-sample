@@ -12,13 +12,13 @@ node {
     }
 
     stage('Build container image') {
-        sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
+        sh "sudo docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
     }
 
     stage('Run docker container from image') {
 
         //Stop and remove all previous containers
-        sh "docker rm \$(docker stop \$(docker ps -a -q --filter ancestor=${IMAGE_NAME}))"
+        sh "sudo docker rm \$(docker stop \$(docker ps -a -q --filter ancestor=${IMAGE_NAME}))"
 
                 def CONTAINER_ID = sh (
                 script: "sudo docker run -d -p 8082:3000 ${IMAGE_NAME}:${BUILD}",
