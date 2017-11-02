@@ -24,7 +24,7 @@ node {
         echo "============================="
         echo "============================="
         //Stop and remove all previous containers
-        sh "sudo docker rm \$(sudo docker stop \$(sudo docker ps -a -q --filter ancestor=${IMAGE_NAME}))"
+        //sh "sudo docker rm \$(sudo docker stop \$(sudo docker ps -a -q --filter ancestor=${IMAGE_NAME}))"
         
 
 
