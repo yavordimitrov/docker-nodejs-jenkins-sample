@@ -35,7 +35,7 @@ node {
         echo "============================="
 
                 def CONTAINER_ID = sh (
-                script: "sudo docker run -d -p 8082:3000 ${IMAGE_NAME}:${BUILD_NUMBER}",
+                script: "sudo docker run -d -p 8088:3000 ${IMAGE_NAME}:${BUILD_NUMBER}",
                 returnStdout: true
         ).trim()
 
